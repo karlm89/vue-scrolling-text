@@ -1,0 +1,65 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app" style="background: #c02026; padding: 1.3rem; color: white;rgba(0,0,0,0.2); font-weight: bold; font-size: 1.3rem;">
+
+            <p>We proudly offer custom metal carports and building solutions in: <span class="name">{{ currentCity.name }}</span></p>
+
+            <script>
+                new Vue({
+                    el:'#app',
+
+                    data() {
+                        return {
+                            cycle: null,
+                            currentCityIndex: 0,
+                            cities: [
+                                { name: 'Alabama' },
+                                { name: 'Arkansas' },
+                                { name: 'Colorado' },
+                                { name: 'Georgia' },
+                                { name: 'Illinois' },
+                                { name: 'Indiana' },
+                                { name: 'Kansas' },
+                                { name: 'Kentucky' },
+                                { name: 'Louisiana' },
+                                { name: 'Maryland' },
+                                { name: 'Missouri' },
+                                { name: 'Mississippi' },
+                                { name: 'New Jersey' },
+                                { name: 'New Mexico' },
+                                { name: 'North Carolina' },
+                                { name: 'Oklahoma' },
+                                { name: 'Pennsylvania' },
+                                { name: 'South Carolina' },
+                                { name: 'Tennessee' },
+                                { name: 'Texas' },
+                                { name: 'Virginia' },
+                                { name: 'West Virginia' },
+                            ]
+                        };
+                    },
+
+                    created() {
+                    this.cycle = setInterval(this.cycleCity, 3000);
+                    },
+
+                    beforeDestroy() {
+                    clearInterval(this.cycle);
+                    },
+
+                    computed: {
+                    currentCity() {
+                        return this.cities[this.currentCityIndex];
+                    	}
+                    },
+
+                    methods: {
+                        cycleCity() {
+                            if (++this.currentCityIndex > this.cities.length - 1) {
+                            this.currentCityIndex = 0;
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
